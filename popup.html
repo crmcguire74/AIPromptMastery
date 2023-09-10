@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AI Chat Prompt Manager</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="./materialize.min.css" />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="./materialize.min.js"></script>
+
+    <script defer src="popup.js"></script>
+    <style>
+      /* Material UI inspired styles */
+       body {
+        font-family: "Roboto", sans-serif;
+        /* margin: 0;
+        padding: 0; */
+        min-width: 300px;
+        max-width: 600px;
+      } 
+      .modal {
+        min-width: 300px;
+        min-height:300px;
+      }
+
+      #navBar {
+        padding-left:25px;
+        padding-right:25px;
+      }
+
+      li {
+        padding-left:20px;
+        padding-right:20px;
+        font-size: 1rem;
+      }
+
+      .dropdown {
+        padding-top:50px;
+      }
+      /* .dropdown {
+        padding: 16px;
+      } */
+       .prompt {
+        margin: 8px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      } 
+      /* .material-icons {
+        cursor: pointer;
+        margin-left: 8px;
+      } */
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper purple darken-4 z-depth-2" id="navBar">
+        <a href="#" class="brand-logo left">
+          AI Prompt Mastery
+        </a>
+        <ul class="right">
+          <li id="navBarRgt">
+
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="row container">
+      <div class="col s12">
+            <div class="dropdown" id="dropdown">
+              <!-- Dynamic prompt list will be appended here -->
+            </div>
+        </div>
+      </div>
+    </div>
+    <footer class="page-footer purple darken-4 z-depth-3">
+      <div class="footer-copyright">
+        <div class="container">&copy; 2023 Christopher R McGuire</div>
+      </div>
+    </footer>
+  </body>
+</html>
