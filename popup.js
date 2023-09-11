@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const addNewPromptButton = document.createElement("navBarButton");
       addNewPromptButton.textContent = "Add New Prompt";
-      addNewPromptButton.className = "right waves-effect waves-light with-header";
+      addNewPromptButton.className = "right waves-effect waves-light with-header navBarAction";
       addNewPromptButton.addEventListener("click", addPrompt);
       const navBar = document.getElementById("navBarRgt");
       navBar.appendChild(addNewPromptButton);
