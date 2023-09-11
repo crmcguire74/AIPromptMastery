@@ -23,9 +23,22 @@
         font-family: "Roboto", sans-serif;
         /* margin: 0;
         padding: 0; */
-        min-width: 300px;
+        min-width: 400px;
         max-width: 600px;
+        min-height: 800px;
       } 
+
+      .logo {
+        width: 48px;
+        height: 55px;
+        padding-top:8px;
+      }
+
+    .appTitle {
+        font-size:1.5rem;
+        position:relative;
+        top: -20px;
+    }
       .modal {
         min-width: 300px;
         min-height:300px;
@@ -62,15 +75,22 @@
   </head>
   <body>
     <nav>
-      <div class="nav-wrapper purple darken-4 z-depth-2" id="navBar">
-        <a href="#" class="brand-logo left">
-          AI Prompt Mastery
-        </a>
-        <ul class="right">
+      <div class="nav-wrapper purple darken-4 z-depth-2 row" id="navBar">
+        <img src="./images/icon48.png" alt="Logo" class="logo" />
+        <span class="appTitle">
+            AI Prompt Mastery
+        </span>
+        <!-- <div class="col s2 brand-logo right">
+            <a href="#">
+              AI Prompt Mastery
+            </a>
+        </div> -->
+        <!-- <div class="col s8 right"> -->
+            <ul class="right">
           <li id="navBarRgt">
-
-          </li>
-        </ul>
+            </li>
+            <!-- </ul> -->
+        </div>
       </div>
     </nav>
     <div class="row container">
@@ -81,10 +101,10 @@
         </div>
       </div>
     </div>
-    <footer class="page-footer purple darken-4 z-depth-3">
+    <!-- <footer class="page-footer purple darken-4 z-depth-3">
       <div class="footer-copyright">
         <div class="container">&copy; 2023 Christopher R McGuire</div>
       </div>
-    </footer>
+    </footer> -->
   </body>
 </html>
