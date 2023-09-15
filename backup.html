@@ -367,23 +367,25 @@
             background-position: 0% 0%;
             background-size: 154.22531366348267px 154.22531366348267px;
             background-repeat: repeat;
-            
+
             opacity: .98;
             flex-shrink: 0;
             position: absolute;
             top: 0;
             right: 0;
-            margin-top:0px;
+            margin-top: 0px;
             width: 145px;
             border-radius: 5px 0 0 5px;
             filter: drop-shadow(-7px 1px 8px rgba(0, 0, 0, 0.18));
             opacity: 0;
 
         }
+
         .buttons {
             position: relative;
-            top:10px;
+            top: 10px;
         }
+
         .pipeline {
             height: auto;
             border-bottom: 2px solid #E6EAEE;
@@ -641,20 +643,29 @@
         #toolbar {
             position: absolute;
             opacity: 0;
-            /* transition: opacity 0.3s;
-            transition:  0.5s; */
-            /* transition: opacity 0.3s, transform 0.5s;
-            transform: translateX(-150px); move the toolbar 150px to the left by default */
-
-
+            right: -150px;
+            transition: all 1s;
         }
+
+        #toolbar.expanded {
+            position: absolute;
+            top:0px;
+            right: 0px;
+            opacity: .9;
+        }
+
     </style>
 
     <script type="text/javascript">
         function expandContract() {
             const el = document.getElementById("expandContract");
             el.classList.toggle("expanded");
-            el.classList.toggle("collapsed");
+           // el.classList.toggle("collapsed");
+        }
+
+        function hoverRow() {
+            const el = document.getElementById("toolbar");
+            el.classList.toggle("expanded");
         }
     </script>
 </head>
@@ -681,50 +692,50 @@
                 <div class="group-name">Jenkins</div>
             </div> -->
             <div class="tableData">
-                <div class="pipeline row">
-                    <div class="pipeline-name">
+                <div class="pipeline row" onmouseover="hoverRow()" data-title="Title #1" data-prompt="This is the first prompt. I am Professor Synapse and will be helping you">
+                    <div class="pipeline-name" >
                         Title #1: This is the first prompt. I am Professor Synapse and will be helping you
                     </div>
                     <div style="display:none;" class="pipeline-promptText">
                         Text
                     </div>
                 </div>
-                <div class="pipeline row">
+                <div class="pipeline row" onmouseover="hoverRow()" data-title="Title #2" data-prompt="">
                     <div class="pipeline-name">
                         Title #2
                     </div>
                 </div>
-                <div class="pipeline row">
+                <div class="pipeline row" onmouseover="hoverRow()">
                     <div class="pipeline-name">
                         Title #3
                     </div>
                 </div>
-                <div class="pipeline row">
+                <div class="pipeline row" onmouseover="hoverRow()">
                     <div class="pipeline-name">
                         Title #4
                     </div>
                 </div>
-                <div class="pipeline row">
+                <div class="pipeline row" onmouseover="hoverRow()">
                     <div class="pipeline-name">
                         Title #5
                     </div>
                 </div>
-                <div class="pipeline row">
+                <div class="pipeline row" onmouseover="hoverRow()">
                     <div class="pipeline-name">
                         Title #6
                     </div>
                 </div>
-                <div class="pipeline row">
+                <div class="pipeline row" onmouseover="hoverRow()">
                     <div class="pipeline-name">
                         Title #7
                     </div>
                 </div>
-                <div class="pipeline row">
+                <div class="pipeline row" onmouseover="hoverRow()">
                     <div class="pipeline-name">
                         Title #8
                     </div>
                 </div>
-                <div class="pipeline row">
+                <div class="pipeline row" onmouseover="hoverRow()">
                     <div class="pipeline-name">
                         Title #9
                     </div>
@@ -762,31 +773,32 @@
     </div>
 
     <script type="text/javascript">
-            document.addEventListener('DOMContentLoaded', function () {
-
-const toolbar = document.getElementById("toolbar");
-toolbar.style.opacity = 0; /* hide the toolbar by default */
-toolbar.style.right = "-150px"; /* hide the toolbar by default */
- document.querySelectorAll('div.pipeline').forEach((row) => {
-       
-     row.addEventListener('mouseenter', (e) => {
-        
-         row.appendChild(toolbar);
-        // toolbar.style.transform = 'translateX(0px)'; /* move the toolbar back to its original position */
-        toolbar.style.right = '0px';
-        toolbar.style.top = '0px'; /* adjust the vertical position if needed */
-         toolbar.style.opacity = 0.9; /* show the toolbar with some transparency */
-        
-     });
-
-     row.addEventListener('mouseleave', () => {
-        toolbar.style.opacity = 0; /* hide the toolbar again */
-        toolbar.style.transform = 'translateX(-150px)'; /* move the toolbar to the left again */
-        toolbar.parentNode.removeChild(toolbar); /* remove the toolbar from the row */
-     });
- });
-}); 
-
+        // document.addEventListener('DOMContentLoaded', function () {
+    
+        //     const toolbar = document.getElementById("toolbar");
+        //     toolbar.style.opacity = 0; /* hide the toolbar by default */
+        //     toolbar.style.right = "0px"; /* set the right property to a numeric value */
+        //     document.querySelectorAll('div.pipeline').forEach((row) => {
+    
+        //         // Add a hover event to every row that animates the toolbar right position from -150px to 0px
+    
+        //         row.addEventListener('mouseenter', (e) => {
+    
+        //             row.appendChild(toolbar);
+        //             toolbar.style.transform = 'translateX(0px)'; /* move the toolbar back to its original position */
+        //             toolbar.style.top = '0px'; /* adjust the vertical position if needed */
+        //             toolbar.style.opacity = 0.9; /* show the toolbar with some transparency */
+    
+        //         });
+    
+        //         row.addEventListener('mouseleave', () => {
+        //             toolbar.style.opacity = 0; /* hide the toolbar again */
+        //             toolbar.style.transform = 'translateX(-150px)'; /* move the toolbar to the left again */
+        //             toolbar.parentNode.removeChild(toolbar); /* remove the toolbar from the row */
+        //         });
+        //     });
+        // });
+    
     </script>
 </body>
 
