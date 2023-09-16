@@ -401,10 +401,13 @@
             }
 
             .row-other {
-                /* display: inline-block; */
                 float: right;
                 padding-right: 60px;
+                padding-top: 10px;
                 position: relative;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 width: 80%;
                 height: 35px;
 
@@ -414,7 +417,7 @@
             &:hover {
                 cursor: pointer;
                 background: #F4F9FA;
-                box-shadow: 0px .5px 2px 0px rgba(8, 35, 48, 0.15), 0px 1px 20px 0px rgba(8, 35, 48, 0.14);
+                box-shadow: 0px .5px 2px 0px rgb(71, 169, 184), 0px 1px 20px 0px rgba(87, 213, 236, 0.512);
 
 
             }
@@ -454,7 +457,6 @@
             <span class="material-symbols-outlined actionBtn">send</span>
             <span class="material-symbols-outlined delActionBtn">delete</span>
         </div>
-        <!-- <div class="toolbarBase"></div> -->
     </div>
 
     <div class="dialogue">
@@ -475,7 +477,7 @@
                     </div>
                     <div class="row-other">
                         <div class="row-col">
-                            This is the contents of the contract
+                            This is the contents of the contract. This is the contents of the contract
                         </div>
                     </div>
                 </div>
