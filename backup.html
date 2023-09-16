@@ -619,7 +619,7 @@
                 }
             }
         } */
-
+ 
         #expandContainer {
             overflow: hidden;
         }
@@ -639,7 +639,7 @@
             padding-bottom: 25px;
             font-size: .8rem;
         }
-
+/*
         #toolbar {
             position: absolute;
             opacity: 0;
@@ -653,6 +653,14 @@
             right: 0px;
             opacity: .9;
         }
+        .toolbarBase {
+            
+            right: -150px; 
+            transition: right 0.3s ease;  
+        }
+        .toolbarBase.expanded {
+            right: 0; 
+        } */
 
     </style>
 
@@ -660,13 +668,23 @@
         function expandContract() {
             const el = document.getElementById("expandContract");
             el.classList.toggle("expanded");
-           // el.classList.toggle("collapsed");
         }
 
-        function hoverRow() {
-            const el = document.getElementById("toolbar");
-            el.classList.toggle("expanded");
-        }
+        // function hoverRow(row) {
+        //     const el = document.getElementById("toolbar");
+        //     el.style.top = "0px";
+        //     el.classList.toggle("expanded");
+
+        //     toolbar.onclick = function() {
+        //     const title = row.getAttribute('data-title');
+        //     const description = row.getAttribute('data-description');
+        //     handleToolbarClick(title, description);
+        // };
+
+        function handleToolbarClick(title, description) {
+    console.log(`Title: ${title}, Description: ${description}`);
+    // Implement your logic here
+}
     </script>
 </head>
 
@@ -692,7 +710,7 @@
                 <div class="group-name">Jenkins</div>
             </div> -->
             <div class="tableData">
-                <div class="pipeline row" onmouseover="hoverRow()" data-title="Title #1" data-prompt="This is the first prompt. I am Professor Synapse and will be helping you">
+                <div class="pipeline row" onmouseover="hoverRow(event)" onmouseout="hoverRow(event)" data-title="Title #1" data-prompt="This is the first prompt. I am Professor Synapse and will be helping you">
                     <div class="pipeline-name" >
                         Title #1: This is the first prompt. I am Professor Synapse and will be helping you
                     </div>
@@ -700,42 +718,42 @@
                         Text
                     </div>
                 </div>
-                <div class="pipeline row" onmouseover="hoverRow()" data-title="Title #2" data-prompt="">
+                <div class="pipeline row" onmouseover="hoverRow(event)" onmouseout="hoverRow(event)" data-title="Title #2" data-prompt="">
                     <div class="pipeline-name">
                         Title #2
                     </div>
                 </div>
-                <div class="pipeline row" onmouseover="hoverRow()">
+                <div class="pipeline row" onmouseover="hoverRow(event)" onmouseout="hoverRow(event)" data-title="Title #3" data-prompt="">
                     <div class="pipeline-name">
                         Title #3
                     </div>
                 </div>
-                <div class="pipeline row" onmouseover="hoverRow()">
+                <div class="pipeline row" onmouseover="hoverRow(event)" onmouseout="hoverRow(event)" data-title="Title #4" data-prompt="">
                     <div class="pipeline-name">
                         Title #4
                     </div>
                 </div>
-                <div class="pipeline row" onmouseover="hoverRow()">
+                <div class="pipeline row" onmouseover="hoverRow(event)" onmouseout="hoverRow(event)" data-title="Title #5" data-prompt="">
                     <div class="pipeline-name">
                         Title #5
                     </div>
                 </div>
-                <div class="pipeline row" onmouseover="hoverRow()">
+                <div class="pipeline row" onmouseover="hoverRow(event)" onmouseout="hoverRow(event)" data-title="Title #6" data-prompt="">
                     <div class="pipeline-name">
                         Title #6
                     </div>
                 </div>
-                <div class="pipeline row" onmouseover="hoverRow()">
+                <div class="pipeline row" onmouseover="hoverRow(event)" onmouseout="hoverRow(event)" data-title="Title #7" data-prompt="">
                     <div class="pipeline-name">
                         Title #7
                     </div>
                 </div>
-                <div class="pipeline row" onmouseover="hoverRow()">
+                <div class="pipeline row" onmouseover="hoverRow(event)" onmouseout="hoverRow(event)" data-title="Title #8" data-prompt="">
                     <div class="pipeline-name">
                         Title #8
                     </div>
                 </div>
-                <div class="pipeline row" onmouseover="hoverRow()">
+                <div class="pipeline row" onmouseover="hoverRow(event)" onmouseout="hoverRow(event)" data-title="Title #9" data-prompt="">
                     <div class="pipeline-name">
                         Title #9
                     </div>
@@ -773,31 +791,20 @@
     </div>
 
     <script type="text/javascript">
-        // document.addEventListener('DOMContentLoaded', function () {
+         document.addEventListener('DOMContentLoaded', function () {
+                 document.querySelectorAll('div.pipeline').forEach((row) => {
     
-        //     const toolbar = document.getElementById("toolbar");
-        //     toolbar.style.opacity = 0; /* hide the toolbar by default */
-        //     toolbar.style.right = "0px"; /* set the right property to a numeric value */
-        //     document.querySelectorAll('div.pipeline').forEach((row) => {
+                 row.addEventListener('mouseenter', (e) => {
     
-        //         // Add a hover event to every row that animates the toolbar right position from -150px to 0px
+                    row.appendChild(toolbar);  
+                    toolbar.style.right = "0px"; /* set the right property to a numeric value */
+                    toolbar.style.top = '0px'; /* adjust the vertical position if needed */
+                    toolbar.style.opacity = 0.9; /* show the toolbar with some transparency */
     
-        //         row.addEventListener('mouseenter', (e) => {
+                 });
     
-        //             row.appendChild(toolbar);
-        //             toolbar.style.transform = 'translateX(0px)'; /* move the toolbar back to its original position */
-        //             toolbar.style.top = '0px'; /* adjust the vertical position if needed */
-        //             toolbar.style.opacity = 0.9; /* show the toolbar with some transparency */
-    
-        //         });
-    
-        //         row.addEventListener('mouseleave', () => {
-        //             toolbar.style.opacity = 0; /* hide the toolbar again */
-        //             toolbar.style.transform = 'translateX(-150px)'; /* move the toolbar to the left again */
-        //             toolbar.parentNode.removeChild(toolbar); /* remove the toolbar from the row */
-        //         });
-        //     });
-        // });
+             });
+         });
     
     </script>
 </body>
