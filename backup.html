@@ -419,9 +419,20 @@
                 background: #F4F9FA;
                 box-shadow: 0px .5px 2px 0px rgb(71, 169, 184), 0px 1px 20px 0px rgba(87, 213, 236, 0.512);
 
+            }
 
+            &:hover::before {
+                content: attr(data-prompt);
+                display: block;
+                height:auto;
+                width: auto;
+                position: absolute;
+                top:-10px;
+                left:0;
+                z-index: 15;
             }
         }
+        
 
 
         #expandContainer {
@@ -470,8 +481,8 @@
                     Title
                 </div>
             </div>
-            <div class="tableData">
-                <div class="row">
+            <div id="tableData" class="tableData">
+                <!-- <div class="row" data-title="Title #1" data-prompt="This is the contents of the prompt you are creating.">
                     <div class="row-name">
                         Title #1
                     </div>
@@ -481,7 +492,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" data-title="Title #2" data-prompt="This is the contents of the prompt you are creating.">
                     <div class="row-name">
                         Title #2
                     </div>
@@ -491,7 +502,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" data-title="Title #3" data-prompt="This is the contents of the prompt you are creating.">
                     <div class="row-name">
                         Title #3
                     </div>
@@ -501,7 +512,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" data-title="Title #4" data-prompt="This is the contents of the prompt you are creating.">
                     <div class="row-name">
                         Title #4
                     </div>
@@ -511,7 +522,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" data-title="Title #5" data-prompt="This is the contents of the prompt you are creating.">
                     <div class="row-name">
                         Title #5
                     </div>
@@ -521,7 +532,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" data-title="Title #6" data-prompt="This is the contents of the prompt you are creating.">
                     <div class="row-name">
                         Title #6
                     </div>
@@ -531,7 +542,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" data-title="Title #7" data-prompt="This is the contents of the prompt you are creating.">
                     <div class="row-name">
                         Title #7
                     </div>
@@ -541,7 +552,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" data-title="Title #8" data-prompt="This is the contents of the prompt you are creating.">
                     <div class="row-name">
                         Title #8
                     </div>
@@ -551,7 +562,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" data-title="Title #9" data-prompt="This is the contents of the prompt you are creating.">
                     <div class="row-name">
                         Title #9
                     </div>
@@ -560,7 +571,7 @@
                             This is the contents of the contract
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="editPanel" id="expandContainer">
@@ -578,6 +589,19 @@
 </body>
 
 <script type="text/javascript">
+
+    const data = [
+        { title: "Title #1", prompt: "This is the contents of the contract prompt 1." },
+        { title: "Title #2", prompt: "This is the contents of the contract prompt 2." },
+        { title: "Title #3", prompt: "This is the contents of the contract prompt 3." },
+        { title: "Title #4", prompt: "This is the contents of the contract prompt 4." },
+        { title: "Title #5", prompt: "This is the contents of the contract prompt 5." },
+        { title: "Title #6", prompt: "This is the contents of the contract prompt 6." },
+        { title: "Title #7", prompt: "This is the contents of the contract prompt 7." },
+        { title: "Title #8", prompt: "This is the contents of the contract prompt 8." },
+        { title: "Title #9", prompt: "This is the contents of the contract prompt 9." },
+    ];
+
     function expandContract() {
         const el = document.getElementById("expandContract");
         el.classList.toggle("expanded");
@@ -592,6 +616,43 @@
         toolbar.style.top = '0px';
         toolbar.style.zIndex = '10';
         toolbar.style.opacity = 0;
+
+        const tableData = document.getElementById("tableData");
+
+        function handleRowClick(event) {
+            const title = event.currentTarget.getAttribute('data-title');
+            const prompt = event.currentTarget.getAttribute('data-prompt');
+            console.log(`Title: ${title}, Prompt: ${prompt}`);
+            // You can replace the above console.log with any action you'd like to perform
+        }
+
+        data.forEach((row) => {
+            const rowElement = document.createElement("div");
+            rowElement.className = "row";
+            rowElement.dataset.title = row.title;
+            rowElement.dataset.prompt = row.prompt;
+
+            // Add click event listener
+            rowElement.addEventListener("click", handleRowClick);
+
+            const rowName = document.createElement("div");
+            rowName.className = "row-name";
+            rowName.textContent = row.title;
+
+            const rowOther = document.createElement("div");
+            rowOther.className = "row-other";
+
+            const rowCol = document.createElement("div");
+            rowCol.className = "row-col";
+            rowCol.textContent = row.prompt;
+
+            rowOther.appendChild(rowCol);
+            rowElement.appendChild(rowName);
+            rowElement.appendChild(rowOther);
+            tableData.appendChild(rowElement);
+        });
+
+
 
         document.querySelectorAll('div.row').forEach((row) => {
 
