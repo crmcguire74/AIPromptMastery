@@ -310,7 +310,7 @@
         }
 
         .delActionBtn {
-            padding-left: 20px;
+            padding-left: 10px;
             padding-right: 5px;
             position: relative;
             top: -5px;
@@ -331,13 +331,13 @@
             background-image: url(./images/glass.png), radial-gradient(151.92% 127.02% at 15.32% 21.04%, rgba(165, 239, 255, 0.20) 0%, rgba(110, 191, 244, 0.04) 77.08%, rgba(70, 144, 212, 0.00) 100%);
             background-color: lightgray;
             background-position: 0% 0%;
-            background-size: 154.22531366348267px 154.22531366348267px;
+            background-size: 100.22531366348267px 100.22531366348267px;
             background-repeat: repeat;
             flex-shrink: 0;
             position: absolute;
             top: 0;
             right: 0;
-            width: 145px;
+            width: 100px;
             border-radius: 5px 0 0 5px;
             opacity: 1;
         }
@@ -516,9 +516,9 @@
             position: absolute;
             font-size: 1rem;
             left: 0;
-            top: -75%;
+            top: 50%;
             transform: translateY(-50%);
-            background-color: #354d73;
+            /* background-color: #C2D6DC; */
             color: #f2f2f2;
             padding: 0 0.3rem;
             margin: 0 0.5rem;
@@ -545,13 +545,20 @@
 
         input:focus+label {
             color: #f2f2f2;
-            top: 0;
-            transform: translateY(-50%) scale(.9);
+            background-color: #354d73;
+            top: 10px;
+            transform: translateY(-50%) scale(.7);
         }
 
-        input:not(:placeholder-shown)+label {
+        /* input:not(:placeholder-shown)+label {
             top: 0;
             transform: translateY(-50%) scale(.9);
+        } */
+        input:not(:placeholder-shown)+label {
+            color:#f2f2f2; 
+            background-color:#354d73; 
+            top:10px; 
+            transform:translateY(-50%) scale(.7); 
         }
 
         textarea {
@@ -568,17 +575,26 @@
 
         textarea:focus {
             border-color: #354d73;
+            
         }
 
         textarea:focus+label {
             color: #f2f2f2;
-            top: 0;
-            transform: translateY(-70%) scale(.9);
+            background-color: #354d73;
+            top: 10px;
+            transform: translateY(-50%) scale(.9);
         }
 
-        textarea:not(:placeholder-shown)+label {
+        /* textarea:not(:placeholder-shown)+label {
             top: 0;
             transform: translateY(-75%) scale(.9);
+        } */
+
+        textarea:not(:placeholder-shown)+label {
+            color:#f2f2f2; 
+            background-color:#354d73; 
+            top:10px; 
+            transform:translateY(-50%) scale(.7); 
         }
     </style>
 
@@ -622,13 +638,13 @@
                               <input placeholder=" " type="text" id="titleValue" />
                               <label for="titleValue">Prompt Title</label>
                             </div>
-                          </div>
-                          <div class="container">
+                        </div>
+                        <div class="container">
                             <div class="material-textarea">
-                              <textarea placeholder="" rows="4" cols="32" id="promptValue"></textarea>
+                              <textarea placeholder=" " rows="4" cols="32" id="promptValue"></textarea>
                               <label for="promptValue">Prompt</label>
                             </div>
-                          </div>
+                        </div>
                 </div>
                 <!-- <div class="inputBlock">
                     <label for="promptTextArea" class="inputLabel">Prompt:</label> 
