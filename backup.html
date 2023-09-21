@@ -22,6 +22,7 @@
         }
 
         .dialogue {
+            overflow: hidden;
             position: relative;
             display: flex;
             width: 402px;
@@ -241,23 +242,24 @@
 
         .table {
             width: 100%;
-            margin-top: 40px;
-            margin-left: 0px;
-            margin-right: 0px;
+            margin: 0px;
             padding-left: 15px;
             padding-right: 15px;
         }
 
         .tableData {
-            max-height: 200px;
+            /* max-height: 200px; */
+            flex-grow: 1;
             overflow-y: auto;
+            transition: height 2.0s ease;
         }
 
         .editPanel {
             border-bottom: 1px solid #2D4E7644;
-            height: auto;
+            height: 300px;
             width: 100%;
             margin-top: 25px;
+            transition: height 1.0s ease;
             /* box-shadow: 1px 0px 1px 0px rgba(0, 0, 0, 0.10), 0px 0px 0px 0px rgba(0, 0, 0, 0.15); */
         }
 
@@ -463,9 +465,12 @@
 
         #expandContainer {
             overflow: hidden;
+            position: relative;
+            bottom: 100px;
         }
 
         #expandContract {
+            height: 0px;
             border-bottom: .5px solid #2D4E7699;
             margin-top: -100%;
             transition: all 1s;
@@ -479,7 +484,7 @@
             padding-top: 25px;
             padding-bottom: 25px; */
             font-size: .8rem;
-            height:230px;
+            height:400px;
         }
 
         /* Material Design Inputs */
@@ -503,10 +508,10 @@
 
         .material-textarea {
             position: absolute;
-            top:80px;
+            top:65px;
             left:0px;
         }
-/* 
+
         label {
             position: absolute;
             font-size: 1rem;
@@ -520,7 +525,7 @@
             transition: .1s ease-out;
             transform-origin: left top;
             pointer-events: none;
-        } */
+        } 
 
         input {
             font-size: 1rem;
@@ -656,13 +661,25 @@
         { title: "Title #9", prompt: "This is the contents of the contract prompt 9." },
     ];
 
+    function resizePanels(expand = true) {
+        const editPanel = document.getElementById("expandContract");
+        const tableData = document.getElementById("tableData");
+        if (expand) {
+            editPanel.style.height = "250px";  // Fixed height when expanded
+            tableData.style.height = "calc(100% - 100px)";
+        } else {
+            editPanel.style.height = "0px";  // Collapse to 0 height
+            tableData.style.height = "100%";
+        }
+    }
+
     function expandContract() {
         const el = document.getElementById("expandContract");
         // el.classList.toggle("expanded");
         // el.classList.toggle("collapsed");
         el.classList.remove("collapsed");
         el.classList.add("expanded");
-
+        resizePanels(true);
     }
 
     function collapseContract() {
@@ -670,12 +687,13 @@
         // el.classList.toggle("collapsed");
         el.classList.remove("expanded");
         el.classList.add("collapsed");
+        resizePanels(false); 
     }
 
     function cancel() {
         clearPrompts();
         const el = document.getElementById("expandContract");
-        collapseContract();    
+        collapseContract();   
     }
 
     function clearPrompts() {
@@ -701,6 +719,7 @@
 
     document.addEventListener('DOMContentLoaded', function () {
 
+        resizePanels(false);  
         const toolbar = document.getElementById("rowToolbar");
         toolbar.style.position = 'absolute';
         toolbar.style.right = '0px';
