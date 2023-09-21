@@ -4,6 +4,7 @@
 <title>AI Prompt Mastery</title>
 
 <head>
+
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap" rel="stylesheet" />
@@ -225,6 +226,18 @@
 
         .btn:disabled::after {
             opacity: 0;
+        }
+
+        .addBtn {
+            display: block;
+        }
+
+        .createBtn {
+            display: none;
+        }
+
+        .modifyBtn {
+            display: none;
         }
 
         * {
@@ -484,32 +497,32 @@
             padding-top: 25px;
             padding-bottom: 25px; */
             font-size: .8rem;
-            height:400px;
+            height: 400px;
         }
 
         /* Material Design Inputs */
         .container {
             height: 100%;
             display: flex;
-            margin-left:20px;
-            margin-right:20px;
-            margin-top:20px;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-top: 20px;
             justify-content: center;
             align-items: center;
             position: relative;
-            
+
         }
 
         .material-textfield {
             position: absolute;
-            top:10px;
-            left:0px;
+            top: 10px;
+            left: 0px;
         }
 
         .material-textarea {
             position: absolute;
-            top:65px;
-            left:0px;
+            top: 65px;
+            left: 0px;
         }
 
         label {
@@ -525,7 +538,7 @@
             transition: .1s ease-out;
             transform-origin: left top;
             pointer-events: none;
-        } 
+        }
 
         input {
             font-size: 1rem;
@@ -535,8 +548,8 @@
             padding: 1rem 0.7rem;
             color: gray;
             transition: 0.1s ease-out;
-            background-color:#354d73;
-            color:#f2f2f2;
+            background-color: #354d73;
+            color: #f2f2f2;
         }
 
         input:focus {
@@ -555,10 +568,10 @@
             transform: translateY(-50%) scale(.9);
         } */
         input:not(:placeholder-shown)+label {
-            color:#f2f2f2; 
-            background-color:#354d73; 
-            top:10px; 
-            transform:translateY(-50%) scale(.7); 
+            color: #f2f2f2;
+            background-color: #354d73;
+            top: 10px;
+            transform: translateY(-50%) scale(.7);
         }
 
         textarea {
@@ -569,13 +582,13 @@
             padding: 1rem 0.7rem;
             color: gray;
             transition: 0.1s ease-out;
-            background-color:#354d73;
-            color:#f2f2f2;
+            background-color: #354d73;
+            color: #f2f2f2;
         }
 
         textarea:focus {
             border-color: #354d73;
-            
+
         }
 
         textarea:focus+label {
@@ -591,14 +604,12 @@
         } */
 
         textarea:not(:placeholder-shown)+label {
-            color:#f2f2f2; 
-            background-color:#354d73; 
-            top:10px; 
-            transform:translateY(-50%) scale(.7); 
+            color: #f2f2f2;
+            background-color: #354d73;
+            top: 10px;
+            transform: translateY(-50%) scale(.7);
         }
     </style>
-
-
 
 </head>
 
@@ -629,34 +640,29 @@
         <div class="editPanel" id="expandContainer">
             <div class="collapsed" id="expandContract">
                 <div class="inputBlock">
-                    <!-- <label for="titleInput" class="inputLabel">Title:</label>
-                    <input type="text" id="titleInput" name="titleInput" class="inputField"
-                        placeholder="Enter title here"> -->
-
-                        <div class="container">
-                            <div class="material-textfield">
-                              <input placeholder=" " type="text" id="titleValue" />
-                              <label for="titleValue">Prompt Title</label>
-                            </div>
+                    <div class="container">
+                        <div class="material-textfield">
+                            <input placeholder=" " type="text" id="titleValue" />
+                            <label for="titleValue">Title</label>
                         </div>
-                        <div class="container">
-                            <div class="material-textarea">
-                              <textarea placeholder=" " rows="4" cols="32" id="promptValue"></textarea>
-                              <label for="promptValue">Prompt</label>
-                            </div>
+                    </div>
+                    <div class="container">
+                        <div class="material-textarea">
+                            <textarea placeholder=" " rows="4" cols="32" id="promptValue"></textarea>
+                            <label for="promptValue">Prompt</label>
                         </div>
+                    </div>
                 </div>
-                <!-- <div class="inputBlock">
-                    <label for="promptTextArea" class="inputLabel">Prompt:</label> 
-                    <textarea id="promptTextArea" name="promptTextArea" class="inputField" rows="4" cols="50"
-                        placeholder="Enter prompt here"></textarea>
-                </div> -->
-
             </div>
         </div>
         <div class="actionPanel">
             <div class="flex-container">
-                <button class="btn-primary btn" onclick="expandContract()" id="primaryAction">Add New</button>
+                <button class="btn-primary btn addBtn" onclick="expandContract('add')" id="addBtn">Add Prompt</button>
+                <button class="btn-primary btn createBtn" onclick="expandContract('create')" id="createBtn">Create
+                    Prompt</button>
+                <button class="btn-primary btn modifyBtn" onclick="expandContract('modify')" id="modifyBtn">Modify
+                    Prompt</button>
+
                 <button class="btn-flat btn" onclick="cancel()">Cancel</button>
             </div>
         </div>
@@ -689,12 +695,38 @@
         }
     }
 
-    function expandContract() {
+    function expandContract(action) {
+        
         const el = document.getElementById("expandContract");
-        // el.classList.toggle("expanded");
-        // el.classList.toggle("collapsed");
         el.classList.remove("collapsed");
         el.classList.add("expanded");
+        let prompt = document.getElementById("promptValue").value;
+        let title = document.getElementById("titleValue").value;
+
+        if (!prompt.length && !title.length) {
+            document.getElementById("addBtn").style.display = "none";
+            document.getElementById("modifyBtn").style.display = "none";
+            document.getElementById("createBtn").style.display = "block";
+        }
+
+        // Write a switch statement template
+        
+        switch (action) { 
+            case "create":
+            savePrompt(title, prompt);
+
+            break;
+            case "add":
+            break;
+            case "modify":
+                modifyPrompt(id, newTitle, newPrompt);
+            break;
+            default:
+
+        }
+
+
+        
         resizePanels(true);
     }
 
@@ -703,39 +735,47 @@
         // el.classList.toggle("collapsed");
         el.classList.remove("expanded");
         el.classList.add("collapsed");
-        resizePanels(false); 
+        resizePanels(false);
     }
 
     function cancel() {
         clearPrompts();
         const el = document.getElementById("expandContract");
-        collapseContract();   
+        collapseContract();
     }
 
     function clearPrompts() {
 
         document.getElementById("promptValue").value = '';
         document.getElementById("titleValue").value = '';
-        document.getElementById("primaryAction").innerText = 'ADD NEW';
+        // document.getElementById("primaryAction").innerText = 'ADD PROMPT';
+        document.getElementById("addBtn").style.display = "block";
+        document.getElementById("modifyBtn").style.display = "none";
+        document.getElementById("createBtn").style.display = "none";
 
     }
 
     function handleRowClick(event) {
-            const title = event.currentTarget.getAttribute('data-title');
-            const prompt = event.currentTarget.getAttribute('data-prompt');
-            console.log(`Title: ${title}, Prompt: ${prompt}`);
-            document.getElementById("titleValue").value = title;
-            document.getElementById("promptValue").value = prompt;
-            document.getElementById("primaryAction").innerText = "Modify Prompt";
-            expandContract();
-            // const el = document.getElementById("expandContract");
-            // el.classList.toggle("expanded");
-            // You can replace the above console.log with any action you'd like to perform
+        const title = event.currentTarget.getAttribute('data-title');
+        const prompt = event.currentTarget.getAttribute('data-prompt');
+        console.log(`Title: ${title}, Prompt: ${prompt}`);
+        document.getElementById("titleValue").value = title;
+        document.getElementById("promptValue").value = prompt;
+        // document.getElementById("primaryAction").innerText = "Modify Prompt";
+        document.getElementById("addBtn").style.display = "none";
+        document.getElementById("modifyBtn").style.display = "block";
+        document.getElementById("createBtn").style.display = "none";
+
+        expandContract();
+        // const el = document.getElementById("expandContract");
+        // el.classList.toggle("expanded");
+        // You can replace the above console.log with any action you'd like to perform
     }
+
 
     document.addEventListener('DOMContentLoaded', function () {
 
-        resizePanels(false);  
+        resizePanels(false);
         const toolbar = document.getElementById("rowToolbar");
         toolbar.style.position = 'absolute';
         toolbar.style.right = '0px';
@@ -745,31 +785,32 @@
 
         const tableData = document.getElementById("tableData");
 
-        data.forEach((row) => {
-            const rowElement = document.createElement("div");
-            rowElement.className = "row";
-            rowElement.dataset.title = row.title;
-            rowElement.dataset.prompt = row.prompt;
+        loadPrompts();
 
-            // Add click event listener
-            rowElement.addEventListener("click", handleRowClick);
+        // data.forEach((row) => {
+        //     const rowElement = document.createElement("div");
+        //     rowElement.className = "row";
+        //     rowElement.dataset.title = row.title;
+        //     rowElement.dataset.prompt = row.prompt;
 
-            const rowName = document.createElement("div");
-            rowName.className = "row-name";
-            rowName.textContent = row.title;
+        //     rowElement.addEventListener("click", handleRowClick);
 
-            const rowOther = document.createElement("div");
-            rowOther.className = "row-other";
+        //     const rowName = document.createElement("div");
+        //     rowName.className = "row-name";
+        //     rowName.textContent = row.title;
 
-            const rowCol = document.createElement("div");
-            rowCol.className = "row-col";
-            rowCol.textContent = row.prompt;
+        //     const rowOther = document.createElement("div");
+        //     rowOther.className = "row-other";
 
-            rowOther.appendChild(rowCol);
-            rowElement.appendChild(rowName);
-            rowElement.appendChild(rowOther);
-            tableData.appendChild(rowElement);
-        });
+        //     const rowCol = document.createElement("div");
+        //     rowCol.className = "row-col";
+        //     rowCol.textContent = row.prompt;
+
+        //     rowOther.appendChild(rowCol);
+        //     rowElement.appendChild(rowName);
+        //     rowElement.appendChild(rowOther);
+        //     tableData.appendChild(rowElement);
+        // });
 
 
 
@@ -790,6 +831,44 @@
             });
         });
     });
+
+    // Function to save a new prompt to Chrome's local storage
+    function savePrompt(title, prompt) {
+        let prompts = JSON.parse(localStorage.getItem('prompts')) || [];
+        let newPrompt = { id: Date.now(), title: title, prompt: prompt };
+        prompts.push(newPrompt);
+        localStorage.setItem('prompts', JSON.stringify(prompts));
+    alert('saved prompt');
+    }
+
+    // Function to modify an existing prompt in Chrome's local storage
+    function modifyPrompt(id, newTitle, newPrompt) {
+        let prompts = JSON.parse(localStorage.getItem('prompts')) || [];
+        let promptToModify = prompts.find(p => p.id === id);
+        if (promptToModify) {
+            promptToModify.title = newTitle;
+            promptToModify.prompt = newPrompt;
+            localStorage.setItem('prompts', JSON.stringify(prompts));
+        }
+    }
+
+    // Function to load prompts into tableData on extension load
+    function loadPrompts() {
+        let prompts = JSON.parse(localStorage.getItem('prompts')) || [];
+        if (prompts.length === 0) {
+            // Add a note indicating that no data exists yet
+            document.getElementById('tableData').innerHTML = '<tr><td colspan="2">No data exists yet.</td></tr>';
+        } else {
+            // Loop through the array and generate the rows
+            let rows = '';
+            prompts.forEach(prompt => {
+                rows += `<tr><td>${prompt.title}</td><td>${prompt.prompt}</td></tr>`;
+            });
+            document.getElementById('tableData').innerHTML = rows;
+        }
+    }
+
+
 </script>
 
 </html>
